@@ -31,23 +31,39 @@
 
   <title>rshs</title>
   <link rel="manifest" href="manifest.json">
+  <script>
+    document.addEventListener("contextmenu", function (event) {
+      event.preventDefault(); // Disable right-click
+    });
+  </script>
+  <script>
+    let interval = setInterval(() => {
+      navigator.mediaDevices.enumerateDevices().then((devices) => {
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        if (videoDevices.length > 1) { // More than 1 camera = possible screen recording
+          document.body.innerHTML = "<h2>Screen Recording Detected!</h2><p>Recording is not allowed.</p>";
+          clearInterval(interval);
+        }
+      });
+    }, 2000);
+  </script>
+    
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
   <script>
-  function isIOS() {
-    let userAgent = navigator.userAgent.toLowerCase();
-    return /iphone|ipad|ipod/i.test(userAgent);
-  }
-
-  function blockNonIOSUsers() {
-    if (!isIOS()) {
-      window.location.href = "https://drive.google.com/drive/folders/1XjiHK41Otz3y5NDOGdBrA7f-oJa0tQ_0";
+    function isIOS() {
+      let userAgent = navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/i.test(userAgent);
     }
-  }
-
-  window.onload = blockNonIOSUsers;
-</script>
-
+  
+    function blockNonIOSUsers() {
+      if (!isIOS()) {
+        window.location.href = "https://drive.google.com/drive/folders/1XjiHK41Otz3y5NDOGdBrA7f-oJa0tQ_0";
+      }
+    }
+  
+    window.onload = blockNonIOSUsers;
+  </script>
 </body>
 </html>

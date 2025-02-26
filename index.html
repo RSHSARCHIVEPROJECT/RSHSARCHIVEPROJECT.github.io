@@ -34,7 +34,6 @@
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
-  <script>if (/android/i.test(navigator.userAgent)) {window.location.href = "https://drive.google.com/drive/folders/1XjiHK41Otz3y5NDOGdBrA7f-oJa0tQ_0?usp=sharing";}</script>
   <script>
   function isIOS() {
     let userAgent = navigator.userAgent.toLowerCase();
@@ -43,7 +42,7 @@
 
   function blockNonIOSUsers() {
     if (!isIOS()) {
-      document.body.innerHTML = "<h2>Access Restricted</h2><p>This web app is only available on iOS devices.</p>";
+      window.location.href = "https://drive.google.com/drive/folders/1XjiHK41Otz3y5NDOGdBrA7f-oJa0tQ_0";
     }
   }
 

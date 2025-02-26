@@ -20,7 +20,7 @@
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A research repository for students">
 
-  <!-- iOS meta tags & icons -->
+  <!-- iOS meta tags & icons -->npm install -g gh-pages
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="rshs">
@@ -35,5 +35,20 @@
 <body>
   <script src="flutter_bootstrap.js" async></script>
   <script>if (/android/i.test(navigator.userAgent)) {window.location.href = "https://drive.google.com/drive/folders/1XjiHK41Otz3y5NDOGdBrA7f-oJa0tQ_0?usp=sharing";}</script>
+  <script>
+  function isIOS() {
+    let userAgent = navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/i.test(userAgent);
+  }
+
+  function blockNonIOSUsers() {
+    if (!isIOS()) {
+      document.body.innerHTML = "<h2>Access Restricted</h2><p>This web app is only available on iOS devices.</p>";
+    }
+  }
+
+  window.onload = blockNonIOSUsers;
+</script>
+
 </body>
 </html>
